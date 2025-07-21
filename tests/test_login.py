@@ -1,6 +1,6 @@
 from selenium import webdriver
 import pytest
-from pages.login_page import login
+from pages.login_page import Login
 from pages.inventory_page import Inventory
 
 
@@ -17,11 +17,11 @@ def setup():
 
 @pytest.mark.positive
 def test_login_positif(setup):
-    login_page = login(setup)
+    login_page = Login(setup)
     Inventory_page = Inventory(setup)
 
-    login_page.username_input('standard_user')
-    login_page.password_input('secret_sauce')
+    login_page.input_username('standard_user')
+    login_page.input_password('secret_sauce')
     login_page.click_login_button()
     title = Inventory_page.check_title()
     assert title == 'Swag Labs'
