@@ -20,8 +20,8 @@ def test_login_positif(setup):
     login_page = login(setup)
     Inventory_page = Inventory(setup)
 
-    login_page.input_username()
-    login_page.input_password()
+    login_page.username_input('standard_user')
+    login_page.password_input('secret_sauce')
     login_page.click_login_button()
     title = Inventory_page.check_title()
     assert title == 'Swag Labs'

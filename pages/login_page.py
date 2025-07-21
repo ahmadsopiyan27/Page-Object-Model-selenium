@@ -6,7 +6,7 @@ class Login:
         self.driver = driver
 
     def input_username(self,username):
-        self.driver.find_element(By.ID, Loclogin.username_input).send_keys(username)
+        self.driver.find_element(By.ID,Loclogin.username_input).send_keys(username)
 
     def input_password(self,password):
         self.driver.find_element(By.ID,Loclogin.password_input).send_keys(password)
