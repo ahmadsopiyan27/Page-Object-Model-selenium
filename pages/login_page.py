@@ -14,5 +14,8 @@ class Login:
     def click_login_button(self):
         self.driver.find_element(By.ID,Loclogin.login_button).click()
         
-    def check_notif(self):
-        pass
+    def is_error_displayed(self):
+        return self.driver.find_element(By.XPATH, '//h3[@data-test="error"]').is_displayed()
+
+    def get_error_text(self):
+        return self.driver.find_element(By.XPATH, '//h3[@data-test="error"]').text
