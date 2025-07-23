@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from locaters.inventory import LocInventory
+from selenium.webdriver.common.action_chains import ActionChains
 
 class Inventory :
     def __init__(self, driver):

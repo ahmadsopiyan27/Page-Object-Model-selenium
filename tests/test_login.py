@@ -25,7 +25,5 @@ def test_login_positif(setup):
     login_page.click_login_button()
     title = Inventory_page.check_title()
     assert title == 'Swag Labs'
-    '''
-   
-    '''
-
+'''
+'''
