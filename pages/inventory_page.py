@@ -10,12 +10,3 @@ class Inventory :
         title = self.driver.find_element(By.XPATH,LocInventory.title_text ).text
 
         return title
-
-    def sort_atoz(self):
-        
-        selector = self.driver.find_element(By.XPATH,"//select[@class='product_sort_container']")
-        option_atoz = self.driver.find_element(By.XPATH,"//select[@class='product_sort_container']/option[text()='Name (A to Z)']")
-        
-        ActionChains.click(selector)
-        ActionChains.click(option_atoz)
-        ActionChains.perform()
