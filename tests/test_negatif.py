@@ -1,5 +1,6 @@
 import pytest
 from pages.login_page import Login
+from locaters.inventory import LocInventory
 
 @pytest.mark.parametrize("username, password, expected_error_displayed", [
     ("invalid_user", "secret_sauce", True),

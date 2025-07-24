@@ -10,3 +10,5 @@ class Inventory :
         title = self.driver.find_element(By.XPATH,LocInventory.title_text ).text
 
         return title
+    
+    

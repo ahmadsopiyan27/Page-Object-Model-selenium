@@ -25,7 +25,9 @@ def test_checkout_flow(setup):
     login.input_password('secret_sauce')
     login.click_login_button()
 
-    cart.add_item_to_cart()
+    cart.add_item_to_cart1()
+    cart.add_item_to_cart2()
+    cart.add_item_to_cart3()
     cart.go_to_cart()
     cart.click_checkout()
     cart.fill_checkout_form('Ahmad', 'Sofiyan', '12345')

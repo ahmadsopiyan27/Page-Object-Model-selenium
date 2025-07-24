@@ -7,15 +7,28 @@ class Cart:
     def __init__(self, driver):
         self.driver = driver
 
-    def add_item_to_cart(self):
+    def add_item_to_cart1(self):
         self.driver.find_element(By.ID, 'add-to-cart-sauce-labs-backpack').click()
+    
+    def add_item_to_cart2(self):
+        self.driver.find_element(By.ID, 'add-to-cart-sauce-labs-bike-light').click()
+
+    def add_item_to_cart3(self):
+        self.driver.find_element(By.ID, 'add-to-cart-sauce-labs-bolt-t-shirt').click()
 
     def go_to_cart(self):
         self.driver.find_element(By.CLASS_NAME, 'shopping_cart_link').click()
-        # Tunggu sampai tombol checkout muncul max 10 detik
+
+    # Tunggu sampai URL berubah ke halaman cart
         WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'checkout'))
+        EC.url_contains('/cart.html')
     )
+
+    # Tunggu tombol checkout bisa diklik
+        WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.ID, 'checkout'))
+    )
+        
 
     def click_checkout(self):
         self.driver.find_element(By.ID, 'checkout').click()
