@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+import time
 
 
 class Cart:
@@ -17,17 +19,34 @@ class Cart:
         self.driver.find_element(By.ID, 'add-to-cart-sauce-labs-bolt-t-shirt').click()
 
     def go_to_cart(self):
-        self.driver.find_element(By.CLASS_NAME, 'shopping_cart_link').click()
+        try:
+            print("[INFO] Menunggu ikon keranjang bisa diklik...")
+            cart_icon = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.CLASS_NAME, 'shopping_cart_link'))
+            )
 
-    # Tunggu sampai URL berubah ke halaman cart
-        WebDriverWait(self.driver, 10).until(
-        EC.url_contains('/cart.html')
-    )
+            print("[INFO] Scroll ke ikon keranjang...")
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", cart_icon)
 
-    # Tunggu tombol checkout bisa diklik
-        WebDriverWait(self.driver, 10).until(
-        EC.element_to_be_clickable((By.ID, 'checkout'))
-    )
+            print("[INFO] Klik ikon keranjang...")
+            cart_icon.click()
+
+            print("[INFO] Tunggu sampai URL berubah ke /cart.html...")
+            WebDriverWait(self.driver, 10).until(
+                EC.url_contains('/cart.html')
+            )
+
+            print("[INFO] Tunggu tombol checkout muncul...")
+            WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, 'checkout'))
+            )
+
+            print("[INFO] Berhasil masuk halaman cart.")
+        except TimeoutException as e:
+            print("[ERROR] Gagal masuk halaman cart!")
+            print("Current URL:", self.driver.current_url)
+            raise e
+
         
 
     def click_checkout(self):
