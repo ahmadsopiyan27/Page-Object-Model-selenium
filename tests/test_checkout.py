@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from pages.login_page import Login
 from pages.inventory_page import Inventory
-from pages.cart import Cart
+from pages.cart_page import Cart
 
 @pytest.fixture
 def setup():
